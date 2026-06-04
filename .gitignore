@@ -1,0 +1,10 @@
+# Local Claude Code settings
+.claude/
+
+# Archives
+*.rar
+*.zip
+
+# OS files
+Thumbs.db
+.DS_Store

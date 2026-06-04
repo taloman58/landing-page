@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="meta.title">GSM Ofis Pro v2.0 — Teknik Servis ve Mağaza Yönetim Yazılımı</title>
+    <meta name="description" data-i18n="meta.description" data-i18n-attr="content" content="GSM Ofis Pro v2.0 ile teknik servis süreçlerinizi hızlandırın, stoklarınızı kontrol edin ve kârınızı maksimize edin.">
+    <meta name="keywords" content="GSM teknik servis yazılımı, telefon dükkanı takip programı, ikinci el telefon stok programı, kırılmaz cam uyumluluk listesi, gsm muhasebe yazılımı">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://www.gsmofis.com/index.html">
+    <link rel="icon" type="image/png" href="icon/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="icon/favicon.png">
+    <link rel="apple-touch-icon" href="icon/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="home">
+    <div class="bg-grid"></div>
+
+    <!-- ═══ NAVBAR ═══ -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="icon/favicon.png" class="logo-icon" alt="GSM Ofis Pro">
+                <span data-i18n="nav.brand">GSM Ofis Pro</span>
+            </a>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link active" data-i18n="nav.home">Ana Sayfa</a>
+                <a href="features.html" class="nav-link" data-i18n="nav.features">Özellikler</a>
+                <a href="pricing.html" class="nav-link" data-i18n="nav.pricing">Fiyatlandırma</a>
+                <a href="gallery.html" class="nav-link" data-i18n="nav.gallery">Galeri</a>
+                <a href="video.html" class="nav-link" data-i18n="nav.video">Video</a>
+            </div>
+            <div class="nav-actions">
+                <div class="lang-dropdown" id="lang-dropdown">
+                    <button class="lang-btn" id="lang-btn" type="button" aria-label="Dil seçimi">
+                        <img src="icon/tr.png" alt="TR" class="lang-flag" id="current-flag">
+                        <span id="current-lang-name">TR</span>
+                        <svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="lang-menu" id="lang-menu">
+                        <a href="#" data-lang="tr"><img src="icon/tr.png" alt="TR"> Türkçe</a>
+                        <a href="#" data-lang="en"><img src="icon/eng.png" alt="EN"> English</a>
+                        <a href="#" data-lang="de"><img src="icon/ger.png" alt="DE"> Deutsch</a>
+                        <a href="#" data-lang="fr"><img src="icon/france.png" alt="FR"> Français</a>
+                        <a href="#" data-lang="it"><img src="icon/it.png" alt="IT"> Italiano</a>
+                        <a href="#" data-lang="es"><img src="icon/esp.png" alt="ES"> Español</a>
+                        <a href="#" data-lang="pt"><img src="icon/port.png" alt="PT"> Português</a>
+                        <a href="#" data-lang="ar"><img src="icon/arabic.png" alt="AR"> العربية</a>
+                    </div>
+                </div>
+                <a href="account/login.html" class="nav-link nav-login-link" data-i18n="nav.login">Giris</a>
+                <a href="https://drive.google.com/file/d/1r-ch4lp1uO0e5yv5wBbdk-hwLwGPavbO/view?usp=sharing" class="nav-cta" data-i18n="nav.download" target="_blank" rel="noopener">Hemen İndir</a>
+            </div>
+            <button class="nav-hamburger" id="nav-hamburger" aria-label="Menü">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ═══ HERO ═══ -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title" data-i18n="hero.title">GSM Mağazanızı <span>Dijital Çağa</span> Taşıyın</h1>
+                <p class="hero-subtitle" data-i18n="hero.subtitle">Karmaşık Excel tablolarından ve eski usul defterlerden kurtulun. İşe yaramayan programları kenara bırakın. Cihaz takibi, stok yönetimi, kasa defteri ve teknik servis profesyonelliği tek bir yerde.</p>
+                <div class="hero-actions">
+                    <a href="https://drive.google.com/file/d/1r-ch4lp1uO0e5yv5wBbdk-hwLwGPavbO/view?usp=sharing" class="btn btn-primary" target="_blank" rel="noopener">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        <span data-i18n="hero.cta_download">Hemen İndir</span>
+                    </a>
+                    <a href="trial.html" class="btn btn-secondary">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+                        <span data-i18n="hero.cta_demo">33 Gün Ücretsiz Dene</span>
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value" data-i18n="hero.stat1_value">2,500+</div>
+                        <div class="hero-stat-label" data-i18n="hero.stat1_label">Aktif Kullanıcı</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value" data-i18n="hero.stat2_value">150K+</div>
+                        <div class="hero-stat-label" data-i18n="hero.stat2_label">Takip Edilen Cihaz</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value" data-i18n="hero.stat3_value">99.9%</div>
+                        <div class="hero-stat-label" data-i18n="hero.stat3_label">Çalışma Süresi</div>
+                    </div>
+                </div>
+
+                <!-- Hero Visual: Data streaming into monitor -->
+                <div class="hero-visual" aria-hidden="true">
+                    <div class="hv-halo"></div>
+
+                    <div class="hv-stream">
+                        <div class="hv-token">
+                            <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18"/></svg>
+                        </div>
+                        <div class="hv-token">
+                            <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h10"/></svg>
+                        </div>
+                        <div class="hv-token">
+                            <svg viewBox="0 0 24 24"><polyline points="3 17 9 11 13 15 21 7"/><polyline points="14 7 21 7 21 14"/></svg>
+                        </div>
+                        <div class="hv-token">
+                            <svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><line x1="2" y1="10" x2="22" y2="10"/></svg>
+                        </div>
+                        <div class="hv-token">
+                            <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/></svg>
+                        </div>
+                        <div class="hv-token">
+                            <svg viewBox="0 0 24 24"><path d="M4 4h3v16H4zM9 8h2v12H9zM13 2h2v18h-2zM17 10h3v10h-3z"/></svg>
+                        </div>
+                        <div class="hv-token">
+                            <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M8 2v4M16 2v4M3 10h18"/></svg>
+                        </div>
+                    </div>
+
+                    <div class="hv-visual-stage">
+                        <div class="hv-monitor">
+                            <div class="hv-monitor-screen">
+                                <div class="hv-kpi">
+                                    <span class="hv-kpi-label">Ciro</span>
+                                    <span class="hv-kpi-value">₺142.8K</span>
+                                    <span class="hv-kpi-trend">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                                        12.4%
+                                    </span>
+                                </div>
+                                <div class="hv-kpi">
+                                    <span class="hv-kpi-label">Tamir</span>
+                                    <span class="hv-kpi-value">38</span>
+                                    <span class="hv-kpi-trend">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                                        8.1%
+                                    </span>
+                                </div>
+                                <div class="hv-kpi">
+                                    <span class="hv-kpi-label">Stok</span>
+                                    <span class="hv-kpi-value">1,284</span>
+                                    <span class="hv-kpi-trend">
+                                        <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="18 15 12 9 6 15"/></svg>
+                                        3.7%
+                                    </span>
+                                </div>
+                                <div class="hv-chart">
+                                    <svg class="hv-chart-line" viewBox="0 0 300 80" preserveAspectRatio="none">
+                                        <defs>
+                                            <linearGradient id="hv-chart-grad" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="0%" stop-color="#0e5f3f" stop-opacity="0.35"/>
+                                                <stop offset="100%" stop-color="#0e5f3f" stop-opacity="0"/>
+                                            </linearGradient>
+                                        </defs>
+                                        <path class="hv-chart-area" d="M0,60 L25,52 L50,56 L75,42 L100,38 L125,44 L150,30 L175,24 L200,28 L225,18 L250,14 L275,20 L300,8 L300,80 L0,80 Z"/>
+                                        <path class="hv-chart-stroke" d="M0,60 L25,52 L50,56 L75,42 L100,38 L125,44 L150,30 L175,24 L200,28 L225,18 L250,14 L275,20 L300,8"/>
+                                    </svg>
+                                    <div class="hv-chart-axis">
+                                        <span>Pzt</span><span>Sal</span><span>Çar</span><span>Per</span><span>Cum</span><span>Cmt</span><span>Paz</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FEATURES PREVIEW ═══ -->
+    <section class="section" id="features-preview">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <div class="section-badge">✦</div>
+                <h2 data-i18n="features.section_title">Güçlü Özellikler</h2>
+                <p data-i18n="features.section_subtitle">İşletmenizi büyütmek için ihtiyacınız olan her şey tek bir platformda.</p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="features-grid">
+                <!-- WhatsApp -->
+                <div class="glass-card animate-on-scroll delay-1">
+                    <div class="glass-card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                    </div>
+                    <h3 data-i18n="features.whatsapp_title">WhatsApp Otomasyonu</h3>
+                    <p data-i18n="features.whatsapp_desc">Müşterinize cihazını teslim aldığınızda, tamir bittiğinde veya teslim edildiğinde tek tıkla profesyonel WhatsApp mesajı gönderin.</p>
+                    <div class="glass-card-features">
+                        <div class="glass-card-feature" data-i18n="features.whatsapp_f1">Servis fişi çıktısı (A4/Termal)</div>
+                        <div class="glass-card-feature" data-i18n="features.whatsapp_f4">Tek tuşla IBAN gönderme</div>
+                        <div class="glass-card-feature" data-i18n="features.whatsapp_f5">Tek tuşla konum paylaşımı</div>
+                    </div>
+                </div>
+                <!-- Cam Uyumluluk -->
+                <div class="glass-card animate-on-scroll delay-2">
+                    <div class="glass-card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><rect x="6" y="2" width="12" height="20" rx="2.5"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+                    </div>
+                    <h3 data-i18n="features.glass_title">Cam Uyumluluk Aracı</h3>
+                    <p data-i18n="features.glass_desc">"Elimde bu modele uygun kırılmaz cam var mı?" sorusuna %98 doğrulukla cevap veren akıllı algoritma.</p>
+                    <div class="glass-card-features">
+                        <div class="glass-card-feature" data-i18n="features.glass_f1">Stok maliyetinizi düşürün</div>
+                        <div class="glass-card-feature" data-i18n="features.glass_f2">Akıllı eşleştirme algoritması</div>
+                        <div class="glass-card-feature" data-i18n="features.glass_f3">Çapraz uyumluluk listesi</div>
+                    </div>
+                </div>
+                <!-- İkinci El -->
+                <div class="glass-card animate-on-scroll delay-3">
+                    <div class="glass-card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                    </div>
+                    <h3 data-i18n="features.secondhand_title">İkinci El Cihaz Güvenliği</h3>
+                    <p data-i18n="features.secondhand_desc">Cihaz alımı yaparken müşteri kimlik fotokopisi ve cihaz fotoğraflarını sistemde saklayın.</p>
+                    <div class="glass-card-features">
+                        <div class="glass-card-feature" data-i18n="features.secondhand_f1">IMEI takibi</div>
+                        <div class="glass-card-feature" data-i18n="features.secondhand_f2">Otomatik kâr hesaplama</div>
+                        <div class="glass-card-feature" data-i18n="features.secondhand_f3">WhatsApp ile toplu/tekli cihaz paylaşımı</div>
+                    </div>
+                </div>
+                <!-- Stok -->
+                <div class="glass-card animate-on-scroll delay-1">
+                    <div class="glass-card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M21 8v13H3V8"/><path d="M1 3h22v5H1z"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+                    </div>
+                    <h3 data-i18n="features.stock_title">Akıllı Stok &amp; Price Keeper</h3>
+                    <p data-i18n="features.stock_desc">Aksesuar stokları bittiğinde "Eksik Ürün" listesine otomatik düşer.</p>
+                    <div class="glass-card-features">
+                        <div class="glass-card-feature" data-i18n="features.stock_f1">Otomatik eksik ürün listesi</div>
+                        <div class="glass-card-feature" data-i18n="features.stock_f2">Barkodlu ürün satışı ve barkod oluşturma</div>
+                        <div class="glass-card-feature" data-i18n="features.stock_f4">Standart fiyat teklifi — her müşteriye aynı fiyat</div>
+                    </div>
+                </div>
+                <!-- Müşteri Yönetimi -->
+                <div class="glass-card animate-on-scroll delay-2">
+                    <div class="glass-card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                    </div>
+                    <h3 data-i18n="features.customer_title">Müşteri Yönetimi</h3>
+                    <p data-i18n="features.customer_desc">Tam kapsamlı müşteri takibi ile alış, satış ve tamir geçmişini tek ekranda görün.</p>
+                    <div class="glass-card-features">
+                        <div class="glass-card-feature" data-i18n="features.customer_f1">Müşteri alış-satış geçmişi</div>
+                        <div class="glass-card-feature" data-i18n="features.customer_f2">Getirilen tamir kayıtları</div>
+                        <div class="glass-card-feature" data-i18n="features.customer_f3">Tam müşteri profili</div>
+                    </div>
+                </div>
+                <!-- Raporlama -->
+                <div class="glass-card animate-on-scroll delay-3">
+                    <div class="glass-card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/><line x1="3" y1="20" x2="21" y2="20"/></svg>
+                    </div>
+                    <h3 data-i18n="features.reporting_title">Detaylı Raporlama</h3>
+                    <p data-i18n="features.reporting_desc">Günlük, haftalık ve aylık detaylı raporlarla işletmenizin nabzını tutun.</p>
+                    <div class="glass-card-features">
+                        <div class="glass-card-feature" data-i18n="features.reporting_f1">Günlük/haftalık/aylık raporlar</div>
+                        <div class="glass-card-feature" data-i18n="features.reporting_f2">Çıktı alma ve dışa aktarma</div>
+                        <div class="glass-card-feature" data-i18n="features.reporting_f3">Kâr-zarar analizi</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ WHY US ═══ -->
+    <section class="section" id="why-us">
+        <div class="container">
+            <div class="section-header animate-on-scroll">
+                <h2 data-i18n="why.title">Neden GSM Ofis Pro?</h2>
+                <p data-i18n="why.subtitle">Teknik Servis ve Mağaza Yönetiminde Yeni Nesil Standart.</p>
+                <div class="section-divider"></div>
+            </div>
+            <div class="why-grid">
+                <div class="why-card animate-on-scroll delay-1">
+                    <div class="why-card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+                    </div>
+                    <h4 data-i18n="why.speed_title">Ultra Hızlı</h4>
+                    <p data-i18n="why.speed_desc">Düşük gecikmeli yerel veri katmanı</p>
+                </div>
+                <div class="why-card animate-on-scroll delay-2">
+                    <div class="why-card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l8 3v7c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V5l8-3z"/><polyline points="9 12 11 14 15 10"/></svg>
+                    </div>
+                    <h4 data-i18n="why.security_title">Güvenli</h4>
+                    <p data-i18n="why.security_desc">DPAPI şifreleme ve bulut yedekleme</p>
+                </div>
+                <div class="why-card animate-on-scroll delay-3">
+                    <div class="why-card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><polyline points="9 12 11 14 15 10"/></svg>
+                    </div>
+                    <h4 data-i18n="why.easy_title">Kullanımı Kolay</h4>
+                    <p data-i18n="why.easy_desc">Esnaf dostu, sade ve modern arayüz</p>
+                </div>
+                <div class="why-card animate-on-scroll delay-4">
+                    <div class="why-card-icon" aria-hidden="true">
+                        <svg viewBox="0 0 24 24"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1v-6h3zM3 19a2 2 0 0 0 2 2h1v-6H3z"/></svg>
+                    </div>
+                    <h4 data-i18n="why.support_title">7/24 Destek</h4>
+                    <p data-i18n="why.support_desc">Canlı destek hattı ile yanınızdayız</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ CTA ═══ -->
+    <section class="section cta-section" id="cta-banner">
+        <div class="container">
+            <div class="cta-box animate-on-scroll">
+                <h2 data-i18n="cta.title">Hemen Başlayın</h2>
+                <p data-i18n="cta.subtitle">GSM Ofis Pro ile işletmenizi dijital çağa taşıyın. 14 gün ücretsiz deneyin.</p>
+                <a href="pricing.html" class="btn btn-primary" data-i18n="cta.button">Ücretsiz Deneyin</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-brand-logo">
+                        <img src="icon/favicon.png" class="logo-icon" alt="GSM Ofis Pro">
+                        <span>GSM Ofis Pro</span>
+                    </div>
+                    <p data-i18n="footer.desc">Teknik Servis ve Mağaza Yönetiminde Yeni Nesil Standart.</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="YouTube">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 8.5a3 3 0 0 0-2.1-2.1C18 6 12 6 12 6s-6 0-7.9.4A3 3 0 0 0 2 8.5 31 31 0 0 0 2 12a31 31 0 0 0 0 3.5 3 3 0 0 0 2.1 2.1C6 18 12 18 12 18s6 0 7.9-.4a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0 0-3.5z"/><polygon points="10 9 15 12 10 15 10 9"/></svg>
+                        </a>
+                        <a href="#" aria-label="Instagram">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"/></svg>
+                        </a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h4 data-i18n="footer.product">Ürün</h4>
+                    <a href="features.html" data-i18n="nav.features">Özellikler</a>
+                    <a href="pricing.html" data-i18n="nav.pricing">Fiyatlandırma</a>
+                    <a href="gallery.html" data-i18n="nav.gallery">Galeri</a>
+                    <a href="video.html" data-i18n="nav.video">Video</a>
+                </div>
+                <div class="footer-column">
+                    <h4 data-i18n="footer.company">Şirket</h4>
+                    <a href="about.html" data-i18n="footer.about">Hakkımızda</a>
+                    <a href="careers.html" data-i18n="footer.careers">Kariyer</a>
+                </div>
+                <div class="footer-column">
+                    <h4 data-i18n="footer.legal">Yasal</h4>
+                    <a href="privacy.html" data-i18n="footer.privacy">Gizlilik Politikası</a>
+                    <a href="terms.html" data-i18n="footer.terms">Kullanım Şartları</a>
+                    <a href="cookies.html" data-i18n="footer.cookies">Çerez Politikası</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copyright" data-i18n="footer.copyright">© 2026 GSM Ofis Pro. Tüm hakları saklıdır.</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ═══ CHAT WIDGET ═══ -->
+    <div id="chat-bubble" tabindex="0" role="button" aria-label="Canlı Destek" title="Canlı Destek">
+        <svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        <span id="chat-unread-dot" class="is-hidden"></span>
+    </div>
+    <div id="chat-panel" class="is-hidden" role="dialog" aria-label="Canlı Destek">
+        <div class="chat-panel-header">
+            <div class="chat-panel-brand">
+                <div class="chat-panel-avatar">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+                </div>
+                <div>
+                    <div>GSM OFİS PRO</div>
+                    <div>Genellikle birkaç dakika içinde yanıtlar</div>
+                </div>
+            </div>
+            <button id="chat-close-btn" aria-label="Kapat" title="Kapat">✕</button>
+        </div>
+        <div id="chat-intro-wrap">
+            <div class="chat-intro-title">Canlı Destek</div>
+            <div class="chat-intro-desc">Merhaba! Bize mesaj göndermek için adınızı girin.</div>
+            <input type="text" id="chat-intro-name" placeholder="Adınız *" autocomplete="name">
+            <input type="tel" id="chat-intro-phone" placeholder="Telefon (opsiyonel)" autocomplete="tel">
+            <input type="email" id="chat-intro-email" placeholder="E-posta *" autocomplete="email">
+            <button id="chat-start-btn">Sohbeti Başlat <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+        </div>
+        <div id="chat-body-area" class="is-hidden">
+            <div id="chat-messages-list"></div>
+            <div class="chat-input-bar">
+                <input type="text" id="chat-msg-input" placeholder="Mesajınızı yazın..." autocomplete="off">
+                <button id="chat-send-msg-btn" aria-label="Gönder"><svg viewBox="0 0 24 24"><path d="M22 2L11 13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ DOCK ═══ -->
+    <div class="dock-wrapper">
+        <div class="dock" id="dock">
+            <a class="dock-item active" href="index.html">
+                <span class="dock-tooltip" data-i18n="nav.home">Ana Sayfa</span>
+                <div class="dock-icon di-home">
+                    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </div>
+            </a>
+            <a class="dock-item" href="features.html">
+                <span class="dock-tooltip" data-i18n="nav.features">Özellikler</span>
+                <div class="dock-icon di-feat">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                </div>
+            </a>
+            <a class="dock-item" href="pricing.html">
+                <span class="dock-tooltip" data-i18n="nav.pricing">Fiyatlandırma</span>
+                <div class="dock-icon di-price">
+                    <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+            </a>
+            <div class="dock-sep"></div>
+            <a class="dock-item" href="gallery.html">
+                <span class="dock-tooltip" data-i18n="nav.gallery">Galeri</span>
+                <div class="dock-icon di-gallery">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                </div>
+            </a>
+            <a class="dock-item" href="video.html">
+                <span class="dock-tooltip" data-i18n="nav.video">Video</span>
+                <div class="dock-icon di-video">
+                    <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/chat-widget.js"></script>
+
+    <!-- Dock magnification -->
+    <script>
+    (function(){
+        var dock = document.getElementById('dock');
+        if (!dock) return;
+        var items = dock.querySelectorAll('.dock-item');
+        dock.addEventListener('mousemove', function(e){
+            items.forEach(function(it){ it.classList.remove('mag-1','mag-2'); });
+            var hov = e.target.closest('.dock-item');
+            if (!hov) return;
+            var idx = Array.prototype.indexOf.call(items, hov);
+            if (idx < 0) return;
+            if (items[idx-1]) items[idx-1].classList.add('mag-1');
+            if (items[idx+1]) items[idx+1].classList.add('mag-1');
+            if (items[idx-2]) items[idx-2].classList.add('mag-2');
+            if (items[idx+2]) items[idx+2].classList.add('mag-2');
+        });
+        dock.addEventListener('mouseleave', function(){
+            items.forEach(function(it){ it.classList.remove('mag-1','mag-2'); });
+        });
+        items.forEach(function(item){
+            item.addEventListener('click', function(){
+                this.classList.remove('bouncing');
+                void this.offsetWidth;
+                this.classList.add('bouncing');
+                setTimeout(function(){ item.classList.remove('bouncing'); }, 500);
+            });
+        });
+    })();
+    </script>
+</body>
+</html>

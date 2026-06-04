@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>GSM OFİS PRO — Portal de Rastreamento de Dispositivos</title>
+  <meta name="description" content="Acompanhe o status de reparo do seu dispositivo em tempo real. Consulte com seu código de rastreamento.">
+  <meta name="theme-color" content="#16a34a">
+  <link rel="icon" type="image/png" href="../icon/port.png">
+  <link rel="shortcut icon" type="image/png" href="../icon/port.png">
+  <link rel="apple-touch-icon" href="../icon/port.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --surface: #ffffff;
+      --surface-alt: #f1f5f9;
+      --border: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --text: #0f172a;
+      --text-muted: #64748b;
+      --text-dim: #94a3b8;
+      --accent: #16a34a;
+      --accent-hover: #15803d;
+      --accent-soft: #dcfce7;
+      --accent-ring: rgba(22,163,74,0.15);
+      --info: #2563eb;
+      --info-soft: #dbeafe;
+      --warning: #d97706;
+      --warning-soft: #fef3c7;
+      --danger: #dc2626;
+      --danger-soft: #fee2e2;
+      --shadow-sm: 0 1px 2px rgba(15,23,42,0.04), 0 0 0 1px rgba(15,23,42,0.03);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { -webkit-text-size-adjust: 100%; }
+
+    body {
+      background: var(--bg);
+      background-image:
+        radial-gradient(circle at 15% 0%, rgba(22,163,74,0.05), transparent 35%),
+        radial-gradient(circle at 100% 100%, rgba(37,99,235,0.04), transparent 45%);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 15px;
+      line-height: 1.5;
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding: 20px 16px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .shell { width: 100%; max-width: 460px; }
+
+    .brand { text-align: center; margin-bottom: 20px; }
+    .brand-mark {
+      display: inline-flex; align-items: center; justify-content: center;
+      width: 44px; height: 44px; border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), #10b981);
+      color: #fff; margin-bottom: 10px;
+      box-shadow: 0 6px 14px -4px rgba(22,163,74,0.35);
+    }
+    .brand-mark svg { width: 22px; height: 22px; }
+    .brand h1 { font-size: 1.1rem; font-weight: 700; letter-spacing: -0.015em; color: var(--text); }
+    .brand p { color: var(--text-muted); font-size: 0.82rem; font-weight: 400; margin-top: 2px; }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-sm);
+      padding: 18px 16px;
+    }
+
+    .view { display: none; }
+    .view.is-active { display: block; animation: fadeIn 0.28s ease; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    .field label {
+      display: block; font-size: 0.72rem; font-weight: 600;
+      color: var(--text-muted); text-transform: uppercase;
+      letter-spacing: 0.06em; margin-bottom: 6px;
+    }
+    .field input {
+      width: 100%; background: var(--surface);
+      border: 1.5px solid var(--border); color: var(--text);
+      padding: 12px 14px; border-radius: var(--radius-sm);
+      font-size: 16px; font-family: inherit; outline: none;
+      transition: border-color 0.18s, box-shadow 0.18s; min-height: 46px;
+    }
+    .field input::placeholder { color: var(--text-dim); }
+    .field input:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-ring); }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      gap: 8px; width: 100%; padding: 12px 16px; border: none;
+      border-radius: var(--radius-sm); font-size: 0.92rem; font-weight: 600;
+      font-family: inherit; cursor: pointer; transition: all 0.18s ease;
+      min-height: 46px; margin-top: 12px;
+    }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-hover); }
+    .btn-primary:active { transform: scale(0.985); }
+    .btn-ghost { background: transparent; color: var(--text-muted); border: 1px solid var(--border); }
+    .btn-ghost:hover { background: var(--surface-alt); color: var(--text); }
+
+    .alert {
+      padding: 10px 12px; border-radius: var(--radius-sm);
+      font-size: 0.82rem; line-height: 1.45; margin-top: 12px;
+      display: none; border: 1px solid transparent;
+    }
+    .alert-error { background: var(--danger-soft); border-color: rgba(220,38,38,0.25); color: #991b1b; }
+
+    .spinner-wrap { text-align: center; padding: 28px 0; }
+    .spinner {
+      width: 28px; height: 28px; border: 2.5px solid var(--border);
+      border-top-color: var(--accent); border-radius: 50%;
+      margin: 0 auto 10px; animation: spin 0.7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .spinner-wrap p { color: var(--text-muted); font-size: 0.85rem; }
+
+    .status-banner {
+      display: flex; align-items: center; gap: 10px;
+      padding: 10px 12px; border-radius: var(--radius-sm);
+      margin-bottom: 14px; background: var(--info-soft);
+      border: 1px solid rgba(37,99,235,0.22);
+    }
+    .status-banner .dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--info); box-shadow: 0 0 0 3px rgba(37,99,235,0.18); flex-shrink: 0;
+    }
+    .status-banner .label {
+      font-size: 0.65rem; font-weight: 600; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.06em; line-height: 1;
+    }
+    .status-banner .value {
+      font-size: 0.92rem; font-weight: 700; color: var(--text);
+      margin-top: 2px; line-height: 1.2;
+    }
+    .status-banner.is-done { background: var(--accent-soft); border-color: rgba(22,163,74,0.22); }
+    .status-banner.is-done .dot { background: var(--accent); box-shadow: 0 0 0 3px rgba(22,163,74,0.18); }
+    .status-banner.is-cancelled { background: var(--danger-soft); border-color: rgba(220,38,38,0.22); }
+    .status-banner.is-cancelled .dot { background: var(--danger); box-shadow: 0 0 0 3px rgba(220,38,38,0.18); }
+
+    .device-title { font-size: 1.15rem; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 2px; line-height: 1.3; }
+    .device-sub { font-size: 0.78rem; color: var(--text-muted); font-weight: 500; margin-bottom: 12px; }
+
+    .meta-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 10px 14px; padding-top: 12px;
+      border-top: 1px solid var(--border);
+    }
+    .meta-item .k {
+      font-size: 0.65rem; font-weight: 600; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 2px;
+    }
+    .meta-item .v { font-size: 0.88rem; color: var(--text); font-weight: 600; word-break: break-word; }
+
+    .cost-block {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 12px; margin-top: 14px; padding: 10px 12px;
+      background: var(--accent-soft);
+      border: 1px solid rgba(22,163,74,0.22);
+      border-radius: var(--radius-sm);
+    }
+    .cost-label { font-size: 0.78rem; color: #166534; font-weight: 600; }
+    .cost-value { font-size: 1.05rem; color: #14532d; font-weight: 700; letter-spacing: -0.01em; }
+
+    .pill-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px; }
+    .pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: var(--surface-alt); color: var(--text);
+      padding: 5px 10px; border-radius: 999px;
+      font-size: 0.72rem; font-weight: 600; border: 1px solid var(--border);
+    }
+    .pill svg { width: 12px; height: 12px; }
+    .pill.warranty { background: var(--warning-soft); color: #92400e; border-color: rgba(217,119,6,0.22); }
+    .pill.date { background: var(--info-soft); color: #1e40af; border-color: rgba(37,99,235,0.22); }
+
+    .info-card {
+      background: var(--surface); border: 1px solid var(--border);
+      border-radius: var(--radius-md); padding: 14px; margin-top: 10px;
+    }
+    .info-head { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+    .info-head svg { width: 14px; height: 14px; color: var(--text-muted); }
+    .info-head .title {
+      font-size: 0.68rem; font-weight: 700; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 0.07em;
+    }
+    .info-body { font-size: 0.88rem; color: var(--text); line-height: 1.55; }
+    .info-body.pre { white-space: pre-wrap; word-break: break-word; }
+
+    .info-row { display: flex; gap: 8px; align-items: baseline; padding: 5px 0; }
+    .info-row + .info-row { border-top: 1px dashed var(--border); }
+    .info-row .lbl { font-size: 0.72rem; color: var(--text-muted); min-width: 60px; font-weight: 500; }
+    .info-row .val { font-size: 0.88rem; color: var(--text); font-weight: 600; flex: 1; word-break: break-word; }
+    .info-row .val a { color: var(--info); text-decoration: none; }
+    .info-row .val a:hover { text-decoration: underline; }
+
+    .timeline { position: relative; margin: 0; padding-left: 36px; }
+    .timeline::before {
+      content: ''; position: absolute; left: 15px; top: 5px; bottom: 5px;
+      width: 2px; background: var(--border);
+    }
+    .step { position: relative; padding: 1px 0 14px; }
+    .step:last-child { padding-bottom: 0; }
+
+    .step-dot {
+      position: absolute; left: -32px; top: 0;
+      width: 24px; height: 24px; border-radius: 50%;
+      background: var(--surface); border: 2px solid var(--border-strong);
+      transition: all 0.2s ease; z-index: 1;
+      display: inline-flex; align-items: center; justify-content: center;
+    }
+    .step-dot svg { width: 12px; height: 12px; color: var(--border-strong); }
+    .step.done .step-dot svg, .step.current .step-dot svg, .step.cancelled .step-dot svg { color: #fff; }
+    .step.done .step-dot { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-ring); }
+    .step.current .step-dot { background: var(--info); border-color: var(--info); box-shadow: 0 0 0 3px rgba(37,99,235,0.2); }
+    .step.cancelled .step-dot { background: var(--danger); border-color: var(--danger); box-shadow: 0 0 0 3px rgba(220,38,38,0.2); }
+
+    .step-title { font-size: 0.88rem; font-weight: 600; color: var(--text-dim); transition: color 0.2s; }
+    .step.done .step-title { color: var(--text); }
+    .step.current .step-title { color: var(--info); }
+    .step.cancelled .step-title { color: var(--danger); }
+
+    .step-desc { font-size: 0.78rem; color: var(--text-dim); margin-top: 1px; }
+    .step.done .step-desc, .step.current .step-desc, .step.cancelled .step-desc { color: var(--text-muted); }
+
+    .step-date { font-size: 0.72rem; color: var(--text-muted); margin-top: 3px; font-weight: 500; }
+
+    .portal-footer { text-align: center; margin-top: 20px; font-size: 0.72rem; color: var(--text-dim); }
+    .portal-footer a { color: inherit; text-decoration: none; }
+    .portal-footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 420px) {
+      body { padding: 14px 12px 22px; }
+      .card { padding: 16px 14px; }
+      .brand { margin-bottom: 16px; }
+      .meta-grid { grid-template-columns: 1fr; gap: 10px; padding-top: 10px; }
+      .info-row .lbl { min-width: 56px; }
+      .device-title { font-size: 1.08rem; }
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b1120; --surface: #1e293b; --surface-alt: #273548;
+        --border: #334155; --border-strong: #475569;
+        --text: #e2e8f0; --text-muted: #94a3b8; --text-dim: #64748b;
+        --accent-soft: rgba(22,163,74,0.14); --accent-ring: rgba(22,163,74,0.22);
+        --info-soft: rgba(37,99,235,0.16); --warning-soft: rgba(217,119,6,0.16);
+        --danger-soft: rgba(220,38,38,0.14);
+        --shadow-sm: 0 1px 2px rgba(0,0,0,0.3), 0 0 0 1px rgba(255,255,255,0.04);
+      }
+      body {
+        background-image:
+          radial-gradient(circle at 15% 0%, rgba(22,163,74,0.08), transparent 40%),
+          radial-gradient(circle at 100% 100%, rgba(37,99,235,0.05), transparent 45%);
+      }
+      .cost-label { color: #86efac; }
+      .cost-value { color: #bbf7d0; }
+      .alert-error { color: #fca5a5; background: rgba(220,38,38,0.12); border-color: rgba(220,38,38,0.3); }
+      .status-banner .value { color: var(--text); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="shell">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="5" y="2" width="14" height="20" rx="3"/>
+          <circle cx="12" cy="18" r="0.8" fill="currentColor" stroke="none"/>
+        </svg>
+      </div>
+      <h1>Portal de Rastreamento de Dispositivos</h1>
+      <p>Acompanhe o status do serviço do seu dispositivo em tempo real</p>
+    </div>
+
+    <div class="card">
+      <div id="v-search" class="view is-active">
+        <form id="tracking-form" autocomplete="off">
+          <div class="field">
+            <label for="track-input">Código de Rastreamento ou Número de Serviço</label>
+            <input type="text" id="track-input" placeholder="ex. SRV-2026-03-001" required inputmode="text" autocapitalize="characters">
+          </div>
+          <button type="submit" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="7"/>
+              <path d="m20 20-3.5-3.5"/>
+            </svg>
+            Pesquisar
+          </button>
+        </form>
+        <div id="search-error" class="alert alert-error"></div>
+      </div>
+
+      <div id="v-loading" class="view">
+        <div class="spinner-wrap">
+          <div class="spinner"></div>
+          <p>Pesquisando registro…</p>
+        </div>
+      </div>
+
+      <div id="v-result" class="view">
+        <div id="r-status-banner" class="status-banner" style="display:none;">
+          <div class="dot"></div>
+          <div>
+            <div class="label">Status Atual</div>
+            <div class="value" id="r-status-text">—</div>
+          </div>
+        </div>
+
+        <h2 class="device-title" id="r-device">—</h2>
+
+        <div class="meta-grid">
+          <div class="meta-item">
+            <div class="k">Cliente</div>
+            <div class="v" id="r-name">—</div>
+          </div>
+          <div class="meta-item" id="r-phone-wrap" style="display:none;">
+            <div class="k">Telefone</div>
+            <div class="v" id="r-phone">—</div>
+          </div>
+          <div class="meta-item">
+            <div class="k">Nº de Serviço</div>
+            <div class="v" id="r-srv">—</div>
+          </div>
+          <div class="meta-item" id="r-imei-wrap" style="display:none;">
+            <div class="k">IMEI / Série</div>
+            <div class="v" id="r-imei">—</div>
+          </div>
+        </div>
+
+        <div class="pill-row" id="r-pills"></div>
+
+        <div class="cost-block" id="r-cost-block" style="display:none;">
+          <span class="cost-label">Custo de Reparo</span>
+          <span class="cost-value" id="r-cost">—</span>
+        </div>
+
+        <div class="info-card" id="r-fault-card" style="display:none;">
+          <div class="info-head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+            <span class="title">Defeito / Operação</span>
+          </div>
+          <div class="info-body pre" id="r-fault">—</div>
+        </div>
+
+        <div class="info-card" id="r-shop-card" style="display:none;">
+          <div class="info-head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l1.5-6h15L21 9"/><path d="M4 9v12h16V9"/><path d="M8 13h4"/></svg>
+            <span class="title">Informações do Serviço</span>
+          </div>
+          <div class="info-body">
+            <div class="info-row" id="r-shop-name-line" style="display:none;"><div class="lbl">Empresa</div><div class="val" id="r-shop-name">—</div></div>
+            <div class="info-row" id="r-shop-phone-line" style="display:none;"><div class="lbl">Telefone</div><div class="val"><a id="r-shop-phone" href="#">—</a></div></div>
+            <div class="info-row" id="r-shop-address-line" style="display:none;"><div class="lbl">Endereço</div><div class="val" id="r-shop-address">—</div></div>
+          </div>
+        </div>
+
+        <div class="info-card" id="r-note-card" style="display:none;">
+          <div class="info-head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M8 13h8"/><path d="M8 17h6"/></svg>
+            <span class="title">Nota de Serviço</span>
+          </div>
+          <div class="info-body pre" id="r-note">—</div>
+        </div>
+
+        <div class="info-card">
+          <div class="info-head">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            <span class="title">Cronologia do Processo</span>
+          </div>
+          <div class="timeline" id="timeline"></div>
+        </div>
+
+        <button type="button" class="btn btn-ghost" onclick="resetView()">Pesquisar Outro Dispositivo</button>
+      </div>
+    </div>
+
+    <div class="portal-footer"><a href="https://www.gsmofis.com" target="_blank" rel="noopener">GSM OFİS PRO — Sistema de Rastreamento de Dispositivos</a></div>
+  </div>
+
+<script>
+const SUPABASE_URL = "https://cjwszktbrkoegbajanwp.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNqd3N6a3RicmtvZWdiYWphbndwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI2OTg1NjQsImV4cCI6MjA4ODI3NDU2NH0.l5x3wA5ZdDy6Jc6yU5PTUboDzkP9iaY42FEC8ukqXDc";
+
+const STEPS = [
+  { id: 'kabul_edildi', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 16 12 14 15 10 15 8 12 2 12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg>', title: 'Recebido', desc: 'Seu dispositivo foi recebido com segurança.' },
+  { id: 'tamirde', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>', title: 'Em Andamento', desc: 'Nossos técnicos estão trabalhando no defeito.' },
+  { id: 'tamamlandi', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>', title: 'Concluído', desc: 'Dispositivo reparado, pronto para retirada.' },
+  { id: 'teslim_edildi', icon: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>', title: 'Entregue', desc: 'O dispositivo foi entregue ao cliente.' }
+];
+
+const STATUS_INDEX = {
+  'kabul_edildi': 0, 'parca_bekliyor': 1, 'tamirde': 1,
+  'tamamlandi': 2, 'teslim_edildi': 3, 'iptal': -1, 'iade': -1
+};
+
+const $  = id => document.getElementById(id);
+const views = ['v-search', 'v-loading', 'v-result'];
+
+function showView(id) {
+  views.forEach(v => $(v).classList.remove('is-active'));
+  $(id).classList.add('is-active');
+}
+
+function showError(msg) {
+  const el = $('search-error');
+  el.textContent = msg;
+  el.style.display = 'block';
+  showView('v-search');
+}
+
+function resetView() {
+  const url = new URL(window.location);
+  url.searchParams.delete('kod');
+  window.history.pushState({}, '', url);
+  $('track-input').value = '';
+  $('search-error').style.display = 'none';
+  showView('v-search');
+}
+
+async function supabaseFetch(endpoint) {
+  const res = await fetch(`${SUPABASE_URL}/rest/v1/${endpoint}`, {
+    method: 'GET',
+    headers: {
+      'apikey': SUPABASE_ANON_KEY,
+      'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+      'Content-Type': 'application/json',
+      'Accept': 'application/json'
+    }
+  });
+  if (!res.ok) {
+    const body = await res.text().catch(() => '');
+    console.error('[portal] Supabase error:', res.status, body);
+    if (res.status === 401 || res.status === 403) {
+      throw new Error('Erro de autorização. Verifique suas configurações Supabase RLS.');
+    }
+    throw new Error(`Erro no servidor (${res.status}). Tente novamente.`);
+  }
+  return res.json();
+}
+
+async function findRecord(code) {
+  const clean = code.trim();
+  let data = await supabaseFetch(`repair_tracking?service_no=eq.${encodeURIComponent(clean)}&select=*`);
+  if (data && data.length > 0) return data[0];
+
+  const isUUID = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(clean);
+  if (isUUID) {
+    data = await supabaseFetch(`repair_tracking?id=eq.${encodeURIComponent(clean)}&select=*`);
+    if (data && data.length > 0) return data[0];
+  }
+
+  data = await supabaseFetch(`repair_tracking?service_no=ilike.*${encodeURIComponent(clean)}*&select=*&limit=1`);
+  if (data && data.length > 0) return data[0];
+
+  return null;
+}
+
+async function doSearch(code) {
+  showView('v-loading');
+  $('search-error').style.display = 'none';
+
+  try {
+    const record = await findRecord(code);
+    if (!record) {
+      showError(`Nenhum registro encontrado para "${code}". Verifique seu código de rastreamento ou número de serviço.`);
+      return;
+    }
+    renderResult(record);
+  } catch (err) {
+    console.error('[portal]', err);
+    const msg = err.message === 'Failed to fetch'
+      ? 'Verifique sua conexão com a internet.'
+      : err.message;
+    showError(msg);
+  }
+}
+
+function formatDate(iso) {
+  if (!iso) return '';
+  try {
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return '';
+    return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  } catch { return ''; }
+}
+
+function formatDateOnly(iso) {
+  if (!iso) return '';
+  try {
+    const d = new Date(iso);
+    if (isNaN(d.getTime())) return '';
+    return d.toLocaleDateString('pt-BR', { day: '2-digit', month: 'long', year: 'numeric' });
+  } catch { return ''; }
+}
+
+const CURRENCY_SYMBOLS = { TRY: '₺', EUR: '€', USD: '$', GBP: '£', SAR: '﷼', AED: 'د.إ', RUB: '₽' };
+let _activeCurrency = '₺';
+
+function formatMoney(val) {
+  const n = Number(val);
+  if (!isFinite(n)) return '—';
+  return n.toLocaleString('pt-BR', { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + ' ' + _activeCurrency;
+}
+
+function setLineText(wrapId, valueId, value) {
+  const wrap = $(wrapId);
+  const val  = $(valueId);
+  if (value) {
+    val.textContent = value;
+    wrap.style.display = '';
+  } else {
+    wrap.style.display = 'none';
+  }
+}
+
+function buildDeviceTitle(data) {
+  const brand = (data.device_brand || '').trim();
+  const model = (data.device_model || '').trim();
+  if (brand && model) return `${brand} ${model}`;
+  if (brand) return brand;
+  if (model) return model;
+  return data.device_name || 'Dispositivo Desconhecido';
+}
+
+function setStatusBanner(status, isCancelled, stageIdx) {
+  const banner = $('r-status-banner');
+  const text = $('r-status-text');
+  banner.classList.remove('is-done', 'is-cancelled');
+
+  if (isCancelled) {
+    text.textContent = 'Serviço Cancelado / Devolvido';
+    banner.classList.add('is-cancelled');
+  } else if (status === 'teslim_edildi') {
+    text.textContent = 'Entregue';
+    banner.classList.add('is-done');
+  } else if (status === 'tamamlandi') {
+    text.textContent = 'Pronto para Retirada';
+    banner.classList.add('is-done');
+  } else {
+    text.textContent = STEPS[stageIdx]?.title || 'Recebido';
+  }
+  banner.style.display = 'flex';
+}
+
+function renderResult(data) {
+  _activeCurrency = CURRENCY_SYMBOLS[(data.currency_code || 'TRY').toUpperCase()] || data.currency_code || '₺';
+  $('r-device').textContent = buildDeviceTitle(data);
+  $('r-name').textContent   = data.customer_name || 'Oculto';
+  $('r-srv').textContent    = data.service_no || '—';
+
+  setLineText('r-phone-wrap', 'r-phone', data.customer_phone_masked);
+  setLineText('r-imei-wrap',  'r-imei',  data.imei_masked);
+
+  const pillRow = $('r-pills');
+  pillRow.innerHTML = '';
+  if (data.estimated_date) {
+    const d = formatDateOnly(data.estimated_date);
+    if (d) pillRow.insertAdjacentHTML('beforeend',
+      `<span class="pill date"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>Previsão: ${d}</span>`);
+  }
+  if (data.warranty_days && Number(data.warranty_days) > 0) {
+    pillRow.insertAdjacentHTML('beforeend',
+      `<span class="pill warranty"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>${Number(data.warranty_days)} dias de garantia</span>`);
+  }
+
+  const costBlock = $('r-cost-block');
+  if (data.total_cost && Number(data.total_cost) > 0) {
+    $('r-cost').textContent = formatMoney(data.total_cost);
+    costBlock.style.display = '';
+  } else {
+    costBlock.style.display = 'none';
+  }
+
+  const faultCard = $('r-fault-card');
+  if (data.fault_description && String(data.fault_description).trim()) {
+    $('r-fault').textContent = String(data.fault_description).trim();
+    faultCard.style.display = '';
+  } else {
+    faultCard.style.display = 'none';
+  }
+
+  const shopCard = $('r-shop-card');
+  const hasShopName    = !!(data.shop_name && String(data.shop_name).trim());
+  const hasShopPhone   = !!(data.shop_phone && String(data.shop_phone).trim());
+  const hasShopAddress = !!(data.shop_address && String(data.shop_address).trim());
+  if (hasShopName || hasShopPhone || hasShopAddress) {
+    if (hasShopName) {
+      $('r-shop-name').textContent = data.shop_name;
+      $('r-shop-name-line').style.display = '';
+    } else {
+      $('r-shop-name-line').style.display = 'none';
+    }
+    if (hasShopPhone) {
+      const phoneEl = $('r-shop-phone');
+      phoneEl.textContent = data.shop_phone;
+      phoneEl.setAttribute('href', `tel:${String(data.shop_phone).replace(/\s/g, '')}`);
+      $('r-shop-phone-line').style.display = '';
+    } else {
+      $('r-shop-phone-line').style.display = 'none';
+    }
+    if (hasShopAddress) {
+      $('r-shop-address').textContent = data.shop_address;
+      $('r-shop-address-line').style.display = '';
+    } else {
+      $('r-shop-address-line').style.display = 'none';
+    }
+    shopCard.style.display = '';
+  } else {
+    shopCard.style.display = 'none';
+  }
+
+  const noteCard = $('r-note-card');
+  if (data.tracking_note && String(data.tracking_note).trim()) {
+    $('r-note').textContent = String(data.tracking_note).trim();
+    noteCard.style.display = '';
+  } else {
+    noteCard.style.display = 'none';
+  }
+
+  const status = data.status || 'kabul_edildi';
+  const isCancelled = status === 'iptal' || status === 'iade';
+  const stageIdx = STATUS_INDEX[status] ?? 0;
+
+  setStatusBanner(status, isCancelled, stageIdx);
+
+  const tl = $('timeline');
+  tl.innerHTML = '';
+
+  if (isCancelled) {
+    tl.innerHTML = `
+      <div class="step cancelled">
+        <div class="step-dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></div>
+        <div class="step-title">Serviço Cancelado / Devolvido</div>
+        <div class="step-desc">O serviço para este dispositivo foi encerrado.</div>
+        ${data.updated_at ? `<div class="step-date">${formatDate(data.updated_at)}</div>` : ''}
+      </div>`;
+  } else {
+    STEPS.forEach((step, i) => {
+      const done = i <= stageIdx;
+      const isCurrent = i === stageIdx && stageIdx < STEPS.length - 1;
+      let cls = 'step';
+      if (done) cls += ' done';
+      if (isCurrent) cls += ' current';
+
+      let dateStr = '';
+      if (done && i === 0 && data.created_at) dateStr = formatDate(data.created_at);
+      if (done && i === stageIdx && data.updated_at) dateStr = formatDate(data.updated_at);
+
+      tl.innerHTML += `
+        <div class="${cls}">
+          <div class="step-dot">${step.icon}</div>
+          <div class="step-title">${step.title}</div>
+          <div class="step-desc">${step.desc}</div>
+          ${dateStr ? `<div class="step-date">${dateStr}</div>` : ''}
+        </div>`;
+    });
+  }
+
+  showView('v-result');
+}
+
+$('tracking-form').addEventListener('submit', e => {
+  e.preventDefault();
+  const code = $('track-input').value.trim();
+  if (code) doSearch(code);
+});
+
+window.addEventListener('DOMContentLoaded', () => {
+  const params = new URLSearchParams(window.location.search);
+  const kod = params.get('kod');
+  if (kod) {
+    $('track-input').value = kod;
+    doSearch(kod);
+  }
+});
+</script>
+</body>
+</html>

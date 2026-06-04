@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="trial.meta_title">33 Gün Ücretsiz Dene — GSM Ofis Pro</title>
+    <meta name="description" data-i18n="trial.meta_description" data-i18n-attr="content" content="GSM Ofis Pro'yu 33 gün boyunca tüm özellikleriyle ücretsiz deneyin. Kredi kartı gerekmez.">
+    <meta name="robots" content="noindex, follow">
+    <link rel="canonical" href="https://www.gsmofis.com/trial.html">
+    <link rel="icon" type="image/png" href="icon/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="icon/favicon.png">
+    <link rel="apple-touch-icon" href="icon/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body data-page="trial">
+    <div class="bg-grid"></div>
+
+    <!-- ═══ NAVBAR ═══ -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="icon/favicon.png" class="logo-icon" alt="GSM Ofis Pro">
+                <span data-i18n="nav.brand">GSM Ofis Pro</span>
+            </a>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link" data-i18n="nav.home">Ana Sayfa</a>
+                <a href="features.html" class="nav-link" data-i18n="nav.features">Özellikler</a>
+                <a href="pricing.html" class="nav-link" data-i18n="nav.pricing">Fiyatlandırma</a>
+                <a href="gallery.html" class="nav-link" data-i18n="nav.gallery">Galeri</a>
+                <a href="video.html" class="nav-link" data-i18n="nav.video">Video</a>
+            </div>
+            <div class="nav-actions">
+                <div class="lang-dropdown" id="lang-dropdown">
+                    <button class="lang-btn" id="lang-btn" type="button" aria-label="Dil seçimi">
+                        <img src="icon/tr.png" alt="TR" class="lang-flag" id="current-flag">
+                        <span id="current-lang-name">TR</span>
+                        <svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="lang-menu" id="lang-menu">
+                        <a href="#" data-lang="tr"><img src="icon/tr.png" alt="TR"> Türkçe</a>
+                        <a href="#" data-lang="en"><img src="icon/eng.png" alt="EN"> English</a>
+                        <a href="#" data-lang="de"><img src="icon/ger.png" alt="DE"> Deutsch</a>
+                        <a href="#" data-lang="fr"><img src="icon/france.png" alt="FR"> Français</a>
+                        <a href="#" data-lang="it"><img src="icon/it.png" alt="IT"> Italiano</a>
+                        <a href="#" data-lang="es"><img src="icon/esp.png" alt="ES"> Español</a>
+                        <a href="#" data-lang="pt"><img src="icon/port.png" alt="PT"> Português</a>
+                        <a href="#" data-lang="ar"><img src="icon/arabic.png" alt="AR"> العربية</a>
+                    </div>
+                </div>
+                <a href="account/login.html" class="nav-link nav-login-link" data-i18n="nav.login">Giris</a>
+                <a href="pricing.html" class="nav-cta" data-i18n="nav.download">Hemen İndir</a>
+            </div>
+            <button class="nav-hamburger" id="nav-hamburger" aria-label="Menü">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ═══ TRIAL FORM ═══ -->
+    <main class="trial-main">
+        <div class="container--narrow">
+            <div class="trial-header">
+                <span class="section-badge" data-i18n="trial.badge">33 GÜN ÜCRETSİZ</span>
+                <h1 data-i18n="trial.title">Hesabınızı oluşturun</h1>
+                <p data-i18n="trial.subtitle">Kredi kartı gerekmez. 33 gün boyunca tüm özelliklerin tamamı açık.</p>
+            </div>
+
+            <!-- FORM -->
+            <div class="form-card" id="trial-form-wrap">
+                <form id="trial-form" novalidate>
+                    <div class="form-grid">
+                        <div class="form-field full-row">
+                            <label for="dealer_name" data-i18n="trial.form.dealer_name">Bayi / Dükkân Adı</label>
+                            <input id="dealer_name" name="dealer_name" type="text" required autocomplete="organization" placeholder=" ">
+                        </div>
+                        <div class="form-field full-row">
+                            <label for="full_name" data-i18n="trial.form.full_name">Ad Soyad</label>
+                            <input id="full_name" name="full_name" type="text" required autocomplete="name" placeholder=" ">
+                        </div>
+                        <div class="form-field">
+                            <label for="username" data-i18n="trial.form.username">Kullanıcı Adı</label>
+                            <input id="username" name="username" type="text" required autocomplete="username" pattern="[a-z0-9._\-]{3,30}" placeholder=" ">
+                            <small class="form-hint" data-i18n="trial.form.username_hint">3–30 karakter; küçük harf, rakam, . _ -</small>
+                        </div>
+                        <div class="form-field">
+                            <label for="email" data-i18n="trial.form.email">E-posta</label>
+                            <input id="email" name="email" type="email" required autocomplete="email" placeholder=" ">
+                        </div>
+                        <div class="form-field">
+                            <label for="phone" data-i18n="trial.form.phone">Telefon</label>
+                            <input id="phone" name="phone" type="tel" required autocomplete="tel" placeholder=" ">
+                        </div>
+                        <div class="form-field">
+                            <label for="password" data-i18n="trial.form.password">Şifre</label>
+                            <input id="password" name="password" type="password" required minlength="6" autocomplete="new-password" placeholder=" ">
+                            <small class="form-hint" data-i18n="trial.form.password_hint">En az 6 karakter</small>
+                        </div>
+                    </div>
+
+                    <!-- Honeypot (bot filtresi) -->
+                    <div class="form-honeypot" aria-hidden="true">
+                        <label for="website">Website</label>
+                        <input type="text" name="website" id="website" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    <div id="trial-error" class="form-error is-hidden" role="alert"></div>
+
+                    <button type="submit" class="btn btn-primary form-submit" id="trial-submit">
+                        <span data-i18n="trial.form.submit">Hesabımı Oluştur</span>
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
+                    </button>
+
+                    <p class="form-note" data-i18n="trial.form.terms">Devam ederek Kullanım Şartlarını kabul etmiş olursunuz.</p>
+                </form>
+            </div>
+
+            <!-- SUCCESS STATE -->
+            <div class="form-card is-hidden" id="trial-success">
+                <div class="trial-success-header">
+                    <svg class="trial-success-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"/><polyline points="9 12 11 14 16 9"/></svg>
+                    <h2 data-i18n="trial.success.title">Hesabınız hazır!</h2>
+                    <p data-i18n="trial.success.subtitle">Uygulamayı indirin ve aşağıdaki bilgilerle giriş yapın.</p>
+                </div>
+
+                <dl class="trial-credentials">
+                    <div class="trial-cred-row">
+                        <dt data-i18n="trial.success.email">E-posta</dt>
+                        <dd><code id="success-email"></code></dd>
+                    </div>
+                    <div class="trial-cred-row">
+                        <dt data-i18n="trial.success.username">Kullanıcı Adı</dt>
+                        <dd><code id="success-username"></code></dd>
+                    </div>
+                    <div class="trial-cred-row">
+                        <dt data-i18n="trial.success.license_key">Lisans Anahtarı</dt>
+                        <dd><code id="success-license-key"></code></dd>
+                    </div>
+                    <div class="trial-cred-row">
+                        <dt data-i18n="trial.success.expires_at">Deneme Bitişi</dt>
+                        <dd id="success-expires"></dd>
+                    </div>
+                </dl>
+
+                <div class="trial-success-actions">
+                    <a href="https://drive.google.com/file/d/1r-ch4lp1uO0e5yv5wBbdk-hwLwGPavbO/view?usp=sharing" class="btn btn-primary" id="trial-download-btn" target="_blank" rel="noopener">
+                        <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        <span data-i18n="trial.success.download">Uygulamayı İndir</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- ═══ FOOTER ═══ -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-brand-logo">
+                        <img src="icon/favicon.png" class="logo-icon" alt="GSM Ofis Pro">
+                        <span>GSM Ofis Pro</span>
+                    </div>
+                    <p data-i18n="footer.desc">Teknik Servis ve Mağaza Yönetiminde Yeni Nesil Standart.</p>
+                </div>
+                <div class="footer-column">
+                    <h4 data-i18n="footer.product">Ürün</h4>
+                    <a href="features.html" data-i18n="nav.features">Özellikler</a>
+                    <a href="pricing.html" data-i18n="nav.pricing">Fiyatlandırma</a>
+                    <a href="gallery.html" data-i18n="nav.gallery">Galeri</a>
+                    <a href="video.html" data-i18n="nav.video">Video</a>
+                </div>
+                <div class="footer-column">
+                    <h4 data-i18n="footer.company">Şirket</h4>
+                    <a href="about.html" data-i18n="footer.about">Hakkımızda</a>
+                    <a href="careers.html" data-i18n="footer.careers">Kariyer</a>
+                </div>
+                <div class="footer-column">
+                    <h4 data-i18n="footer.legal">Yasal</h4>
+                    <a href="privacy.html" data-i18n="footer.privacy">Gizlilik Politikası</a>
+                    <a href="terms.html" data-i18n="footer.terms">Kullanım Şartları</a>
+                    <a href="cookies.html" data-i18n="footer.cookies">Çerez Politikası</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copyright" data-i18n="footer.copyright">© 2026 GSM Ofis Pro. Tüm hakları saklıdır.</span>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ═══ DOCK ═══ -->
+    <div class="dock-wrapper">
+        <div class="dock" id="dock">
+            <a class="dock-item" href="index.html">
+                <span class="dock-tooltip" data-i18n="nav.home">Ana Sayfa</span>
+                <div class="dock-icon di-home">
+                    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </div>
+            </a>
+            <a class="dock-item" href="features.html">
+                <span class="dock-tooltip" data-i18n="nav.features">Özellikler</span>
+                <div class="dock-icon di-feat">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                </div>
+            </a>
+            <a class="dock-item" href="pricing.html">
+                <span class="dock-tooltip" data-i18n="nav.pricing">Fiyatlandırma</span>
+                <div class="dock-icon di-price">
+                    <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+            </a>
+            <div class="dock-sep"></div>
+            <a class="dock-item" href="gallery.html">
+                <span class="dock-tooltip" data-i18n="nav.gallery">Galeri</span>
+                <div class="dock-icon di-gallery">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                </div>
+            </a>
+            <a class="dock-item" href="video.html">
+                <span class="dock-tooltip" data-i18n="nav.video">Video</span>
+                <div class="dock-icon di-video">
+                    <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/trial.js"></script>
+
+    <!-- Dock magnification -->
+    <script>
+    (function(){
+        var dock = document.getElementById('dock');
+        if (!dock) return;
+        var items = dock.querySelectorAll('.dock-item');
+        dock.addEventListener('mousemove', function(e){
+            items.forEach(function(it){ it.classList.remove('mag-1','mag-2'); });
+            var hov = e.target.closest('.dock-item');
+            if (!hov) return;
+            var idx = Array.prototype.indexOf.call(items, hov);
+            if (idx < 0) return;
+            if (items[idx-1]) items[idx-1].classList.add('mag-1');
+            if (items[idx+1]) items[idx+1].classList.add('mag-1');
+            if (items[idx-2]) items[idx-2].classList.add('mag-2');
+            if (items[idx+2]) items[idx+2].classList.add('mag-2');
+        });
+        dock.addEventListener('mouseleave', function(){
+            items.forEach(function(it){ it.classList.remove('mag-1','mag-2'); });
+        });
+        items.forEach(function(item){
+            item.addEventListener('click', function(){
+                this.classList.remove('bouncing');
+                void this.offsetWidth;
+                this.classList.add('bouncing');
+                setTimeout(function(){ item.classList.remove('bouncing'); }, 500);
+            });
+        });
+    })();
+    </script>
+</body>
+</html>

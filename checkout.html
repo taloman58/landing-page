@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="meta.checkout_title">Checkout - GSM Ofis Pro v2.0</title>
+    <meta name="description" data-i18n="meta.checkout_desc" data-i18n-attr="content" content="Create your GSM Ofis Pro account and continue to secure checkout.">
+    <link rel="canonical" href="https://www.gsmofis.com/checkout.html">
+    <link rel="icon" type="image/png" href="icon/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="icon/favicon.png">
+    <link rel="apple-touch-icon" href="icon/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script>
+        // TR + zaten login → manuel ödeme kartı için doğrudan dashboard'a.
+        // TR + login değil → sayfada kal, kayıt formu görünsün (submit handler manuel akışa düşer).
+        (function () {
+            try {
+                var lang = (localStorage.getItem('appLang') || 'tr').toLowerCase();
+                if (lang !== 'tr') return;
+                var raw = localStorage.getItem('sb-cjwszktbrkoegbajanwp-auth-token');
+                var hasSession = false;
+                if (raw) {
+                    try {
+                        var s = JSON.parse(raw);
+                        hasSession = !!(s && s.access_token && (!s.expires_at || Date.now() / 1000 < Number(s.expires_at)));
+                    } catch (e) { hasSession = false; }
+                }
+                if (!hasSession) return;
+                var params = new URLSearchParams(window.location.search);
+                var plan = (params.get('plan') || 'yearly').toLowerCase();
+                if (plan !== 'yearly' && plan !== 'lifetime') plan = 'yearly';
+                window.location.replace('account/dashboard.html?plan=' + encodeURIComponent(plan));
+            } catch (e) { /* fail-open: LS akışı gösterilsin */ }
+        })();
+    </script>
+</head>
+<body data-page="checkout">
+    <div class="bg-grid"></div>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">
+                <img src="icon/favicon.png" class="logo-icon" alt="GSM Ofis Pro">
+                <span data-i18n="nav.brand">GSM Ofis Pro</span>
+            </a>
+            <div class="nav-menu" id="nav-menu">
+                <a href="index.html" class="nav-link" data-i18n="nav.home">Home</a>
+                <a href="features.html" class="nav-link" data-i18n="nav.features">Features</a>
+                <a href="pricing.html" class="nav-link active" data-i18n="nav.pricing">Pricing</a>
+                <a href="gallery.html" class="nav-link" data-i18n="nav.gallery">Gallery</a>
+                <a href="video.html" class="nav-link" data-i18n="nav.video">Video</a>
+            </div>
+            <div class="nav-actions">
+                <div class="lang-dropdown" id="lang-dropdown">
+                    <button class="lang-btn" id="lang-btn" type="button" aria-label="Language">
+                        <img src="icon/tr.png" alt="TR" class="lang-flag" id="current-flag">
+                        <span id="current-lang-name">TR</span>
+                        <svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="lang-menu" id="lang-menu">
+                        <a href="#" data-lang="tr"><img src="icon/tr.png" alt="TR"> Türkçe</a>
+                        <a href="#" data-lang="en"><img src="icon/eng.png" alt="EN"> English</a>
+                        <a href="#" data-lang="de"><img src="icon/ger.png" alt="DE"> Deutsch</a>
+                        <a href="#" data-lang="fr"><img src="icon/france.png" alt="FR"> Français</a>
+                        <a href="#" data-lang="it"><img src="icon/it.png" alt="IT"> Italiano</a>
+                        <a href="#" data-lang="es"><img src="icon/esp.png" alt="ES"> Español</a>
+                        <a href="#" data-lang="pt"><img src="icon/port.png" alt="PT"> Português</a>
+                        <a href="#" data-lang="ar"><img src="icon/arabic.png" alt="AR"> العربية</a>
+                    </div>
+                </div>
+                <a href="account/login.html" class="nav-link nav-login-link" data-i18n="nav.login">Giris</a>
+                <a href="pricing.html" class="nav-cta" data-i18n="checkout.back_to_pricing">Back to pricing</a>
+            </div>
+            <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="trial-main checkout-main">
+        <div class="container--narrow">
+            <div class="trial-header">
+                <div class="section-badge">💳</div>
+                <h1 data-i18n="checkout.title">Create account and pay</h1>
+                <p data-i18n="checkout.subtitle">Enter the account details that will be connected to your license after payment.</p>
+            </div>
+
+            <div class="form-card">
+                <div class="checkout-plan-summary">
+                    <div>
+                        <span class="checkout-plan-label" data-i18n="checkout.plan_label">Selected plan</span>
+                        <strong id="checkout-plan-name" data-i18n="pricing.yearly_name">Yearly Plan</strong>
+                    </div>
+                    <a href="pricing.html" data-i18n="checkout.change_plan">Change</a>
+                </div>
+
+                <div id="checkout-upgrade-banner" class="checkout-upgrade-banner is-hidden" role="status">
+                    <strong data-i18n="checkout.upgrade_title">Plan upgrade</strong>
+                    <span data-i18n="checkout.upgrade_note">A new license will be linked to your existing account. Your password will not change.</span>
+                </div>
+
+                <div id="checkout-error" class="form-error is-hidden" role="alert"></div>
+
+                <form id="checkout-form" novalidate>
+                    <input type="hidden" name="plan" id="checkout-plan-input" value="yearly">
+                    <div class="form-honeypot" aria-hidden="true">
+                        <label for="checkout-website">Website</label>
+                        <input type="text" id="checkout-website" name="website" tabindex="-1" autocomplete="off">
+                    </div>
+
+                    <div class="form-grid">
+                        <div class="form-field">
+                            <label for="checkout-full-name" data-i18n="checkout.full_name">Full name</label>
+                            <input id="checkout-full-name" name="full_name" type="text" autocomplete="name" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="checkout-username" data-i18n="checkout.username">Username</label>
+                            <input id="checkout-username" name="username" type="text" autocomplete="username" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="checkout-email" data-i18n="checkout.email">Email</label>
+                            <input id="checkout-email" name="email" type="email" autocomplete="email" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="checkout-phone" data-i18n="checkout.phone">Phone</label>
+                            <input id="checkout-phone" name="phone" type="tel" autocomplete="tel">
+                        </div>
+                        <div class="form-field">
+                            <label for="checkout-password" data-i18n="checkout.password">Password</label>
+                            <input id="checkout-password" name="password" type="password" autocomplete="new-password" required minlength="8">
+                            <span class="form-hint" data-i18n="checkout.password_hint">Minimum 8 characters, with an uppercase letter and a number.</span>
+                        </div>
+                        <div class="form-field">
+                            <label for="checkout-password-confirm" data-i18n="checkout.password_confirm">Confirm password</label>
+                            <input id="checkout-password-confirm" name="password_confirm" type="password" autocomplete="new-password" required minlength="8">
+                        </div>
+                    </div>
+
+                    <button id="checkout-submit" class="btn btn-primary form-submit" type="submit">
+                        <span data-i18n="checkout.submit">Continue to secure checkout</span>
+                    </button>
+                    <p class="form-note" data-i18n="checkout.secure_note">Payment is completed on a secure checkout page. Your license is issued automatically after successful payment.</p>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="footer-brand-logo">
+                        <img src="icon/favicon.png" class="logo-icon" alt="GSM Ofis Pro">
+                        <span>GSM Ofis Pro</span>
+                    </div>
+                    <p data-i18n="footer.desc">Next generation standard for technical service and store management.</p>
+                </div>
+                <div class="footer-column">
+                    <h4 data-i18n="footer.product">Product</h4>
+                    <a href="features.html" data-i18n="nav.features">Features</a>
+                    <a href="pricing.html" data-i18n="nav.pricing">Pricing</a>
+                    <a href="gallery.html" data-i18n="nav.gallery">Gallery</a>
+                    <a href="video.html" data-i18n="nav.video">Video</a>
+                </div>
+                <div class="footer-column">
+                    <h4 data-i18n="footer.company">Company</h4>
+                    <a href="about.html" data-i18n="footer.about">About</a>
+                    <a href="careers.html" data-i18n="footer.careers">Careers</a>
+                </div>
+                <div class="footer-column">
+                    <h4 data-i18n="footer.legal">Legal</h4>
+                    <a href="privacy.html" data-i18n="footer.privacy">Privacy Policy</a>
+                    <a href="terms.html" data-i18n="footer.terms">Terms</a>
+                    <a href="cookies.html" data-i18n="footer.cookies">Cookies</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span class="footer-copyright" data-i18n="footer.copyright">© 2026 GSM Ofis Pro. All rights reserved.</span>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- ═══ DOCK ═══ -->
+    <div class="dock-wrapper">
+        <div class="dock" id="dock">
+            <a class="dock-item" href="index.html">
+                <span class="dock-tooltip" data-i18n="nav.home">Ana Sayfa</span>
+                <div class="dock-icon di-home">
+                    <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </div>
+            </a>
+            <a class="dock-item" href="features.html">
+                <span class="dock-tooltip" data-i18n="nav.features">Özellikler</span>
+                <div class="dock-icon di-feat">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                </div>
+            </a>
+            <a class="dock-item" href="pricing.html">
+                <span class="dock-tooltip" data-i18n="nav.pricing">Fiyatlandırma</span>
+                <div class="dock-icon di-price">
+                    <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+            </a>
+            <div class="dock-sep"></div>
+            <a class="dock-item" href="gallery.html">
+                <span class="dock-tooltip" data-i18n="nav.gallery">Galeri</span>
+                <div class="dock-icon di-gallery">
+                    <svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+                </div>
+            </a>
+            <a class="dock-item" href="video.html">
+                <span class="dock-tooltip" data-i18n="nav.video">Video</span>
+                <div class="dock-icon di-video">
+                    <svg viewBox="0 0 24 24"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/i18n.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/checkout.js?v=20260430b"></script>
+
+    <!-- Dock magnification -->
+    <script>
+    (function(){
+        var dock = document.getElementById('dock');
+        if (!dock) return;
+        var items = dock.querySelectorAll('.dock-item');
+        dock.addEventListener('mousemove', function(e){
+            items.forEach(function(it){ it.classList.remove('mag-1','mag-2'); });
+            var hov = e.target.closest('.dock-item');
+            if (!hov) return;
+            var idx = Array.prototype.indexOf.call(items, hov);
+            if (idx < 0) return;
+            if (items[idx-1]) items[idx-1].classList.add('mag-1');
+            if (items[idx+1]) items[idx+1].classList.add('mag-1');
+            if (items[idx-2]) items[idx-2].classList.add('mag-2');
+            if (items[idx+2]) items[idx+2].classList.add('mag-2');
+        });
+        dock.addEventListener('mouseleave', function(){
+            items.forEach(function(it){ it.classList.remove('mag-1','mag-2'); });
+        });
+        items.forEach(function(item){
+            item.addEventListener('click', function(){
+                this.classList.remove('bouncing');
+                void this.offsetWidth;
+                this.classList.add('bouncing');
+                setTimeout(function(){ item.classList.remove('bouncing'); }, 500);
+            });
+        });
+    })();
+    </script>
+</body>
+</html>

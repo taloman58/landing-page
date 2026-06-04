@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="account.login.meta_title">Account Login - GSM Ofis Pro</title>
+    <meta name="description" data-i18n="account.login.meta_desc" data-i18n-attr="content" content="Sign in to view your GSM Ofis Pro license and account details.">
+    <link rel="icon" type="image/png" href="../icon/favicon.png">
+    <link rel="shortcut icon" type="image/png" href="../icon/favicon.png">
+    <link rel="apple-touch-icon" href="../icon/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-page="account">
+    <div class="bg-grid"></div>
+
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="../index.html" class="nav-logo">
+                <img src="../icon/favicon.png" class="logo-icon" alt="GSM Ofis Pro">
+                <span data-i18n="nav.brand">GSM Ofis Pro</span>
+            </a>
+            <div class="nav-menu" id="nav-menu">
+                <a href="../index.html" class="nav-link" data-i18n="nav.home">Home</a>
+                <a href="../features.html" class="nav-link" data-i18n="nav.features">Features</a>
+                <a href="../pricing.html" class="nav-link" data-i18n="nav.pricing">Pricing</a>
+                <a href="../gallery.html" class="nav-link" data-i18n="nav.gallery">Gallery</a>
+                <a href="../video.html" class="nav-link" data-i18n="nav.video">Video</a>
+            </div>
+            <div class="nav-actions">
+                <div class="lang-dropdown" id="lang-dropdown">
+                    <button class="lang-btn" id="lang-btn" type="button" aria-label="Language">
+                        <img src="../icon/tr.png" alt="TR" class="lang-flag" id="current-flag">
+                        <span id="current-lang-name">TR</span>
+                        <svg class="lang-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+                    </button>
+                    <div class="lang-menu" id="lang-menu">
+                        <a href="#" data-lang="tr"><img src="../icon/tr.png" alt="TR"> Turkce</a>
+                        <a href="#" data-lang="en"><img src="../icon/eng.png" alt="EN"> English</a>
+                        <a href="#" data-lang="de"><img src="../icon/ger.png" alt="DE"> Deutsch</a>
+                        <a href="#" data-lang="fr"><img src="../icon/france.png" alt="FR"> Francais</a>
+                        <a href="#" data-lang="it"><img src="../icon/it.png" alt="IT"> Italiano</a>
+                        <a href="#" data-lang="es"><img src="../icon/esp.png" alt="ES"> Espanol</a>
+                        <a href="#" data-lang="pt"><img src="../icon/port.png" alt="PT"> Portugues</a>
+                        <a href="#" data-lang="ar"><img src="../icon/arabic.png" alt="AR"> Arabic</a>
+                    </div>
+                </div>
+                <a href="login.html" class="nav-link nav-login-link active" data-i18n="nav.login">Login</a>
+                <a href="../pricing.html" class="nav-cta" data-i18n="nav.download">Download</a>
+            </div>
+            <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <main class="trial-main account-main account-login-main">
+        <div class="container--narrow">
+
+            <div class="login-card">
+                <div class="login-brand">
+                    <img src="../icon/favicon.png" alt="GSM Ofis Pro" class="login-brand-mark">
+                    <span class="login-brand-name" data-i18n="nav.brand">GSM Ofis Pro</span>
+                </div>
+
+                <div class="login-card-head">
+                    <h1 data-i18n="account.login.title">Sign in to your account</h1>
+                    <p data-i18n="account.login.subtitle">Use the same email and password you use in the desktop application.</p>
+                </div>
+
+                <div id="account-error" class="form-error is-hidden" role="alert"></div>
+                <div id="account-success" class="form-success is-hidden" role="status"></div>
+
+                <form id="account-login-form" class="login-form" novalidate>
+                    <div class="login-field">
+                        <label for="account-email" data-i18n="account.common.email">Email</label>
+                        <input id="account-email" name="email" type="email" autocomplete="email" required>
+                    </div>
+                    <div class="login-field">
+                        <div class="login-field-label">
+                            <label for="account-password" data-i18n="account.common.password">Password</label>
+                            <a href="reset-password.html" class="login-forgot-link" data-i18n="account.login.forgot">Forgot password?</a>
+                        </div>
+                        <input id="account-password" name="password" type="password" autocomplete="current-password" required>
+                    </div>
+
+                    <button id="account-login-submit" class="btn btn-primary login-submit" type="submit">
+                        <span data-i18n="account.login.submit">Sign in</span>
+                    </button>
+                </form>
+            </div>
+
+            <div class="login-footer-cta">
+                <span class="login-footer-text" data-i18n="account.login.no_account">Don't have a license yet?</span>
+                <a href="../pricing.html" class="login-footer-link" data-i18n="account.login.buy_license">Buy a license →</a>
+            </div>
+
+        </div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="../js/i18n.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/account-auth.js"></script>
+</body>
+</html>
